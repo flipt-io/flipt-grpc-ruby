@@ -20,6 +20,7 @@ Gem::Specification.new do |spec|
 
     spec.metadata["homepage_uri"] = spec.homepage
     spec.metadata["source_code_uri"] = "https://github.com/markphelps/flipt-grpc-ruby"
+    spec.metadata["github_repo"] = "https://github.com/markphelps/flipt-grpc-ruby"
   else
     raise "RubyGems 2.0 or newer is required to protect against " \
       "public gem pushes."

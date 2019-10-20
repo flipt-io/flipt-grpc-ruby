@@ -7,7 +7,9 @@ The official GRPC Ruby client for [Flipt](https://github.com/markphelps/flipt).
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'flipt-grpc-ruby'
+source "https://rubygems.pkg.github.com/markphelps" do
+  gem "flipt-grpc", "0.1.0"
+end
 ```
 
 And then execute:
@@ -16,7 +18,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install flipt-grpc-ruby
+    $ gem install flipt-grpc --version "0.1.0" --source "https://rubygems.pkg.github.com/markphelps"
 
 ## Usage Example
 
