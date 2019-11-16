@@ -5,7 +5,16 @@ The official GRPC Ruby client for [Flipt](https://github.com/markphelps/flipt).
 ## Installation
 
 1. Configure RubyGems to [authenticate with GitHub Package Registry](https://help.github.com/en/github/managing-packages-with-github-package-registry/configuring-rubygems-for-use-with-github-package-registry#authenticating-to-github-package-registry)
-2. Add this line to your application's Gemfile:
+
+2. Update your `~/.gemrc` to contain the following:
+
+```
+:sources:
+- https://rubygems.org/
+- https://{GITHUB_USERNAME}:{GITHUB_TOKEN}@rubygems.pkg.github.com/markphelps/
+```
+
+3. Add this line to your application's Gemfile:
 
 ```ruby
 source "https://rubygems.pkg.github.com/markphelps" do
@@ -13,7 +22,7 @@ source "https://rubygems.pkg.github.com/markphelps" do
 end
 ```
 
-3. And then execute:
+4. And then execute:
 
     $ bundle
 
