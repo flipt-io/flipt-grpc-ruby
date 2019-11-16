@@ -24,7 +24,7 @@ end
 
 4. And then execute:
 
-    $ bundle
+    `$ bundle`
 
 Or install it yourself as:
 
