@@ -5,6 +5,7 @@ require 'google/protobuf'
 
 require 'google/protobuf/timestamp_pb'
 require 'google/protobuf/empty_pb'
+require 'protoc-gen-swagger/options/annotations_pb'
 Google::Protobuf::DescriptorPool.generated_pool.build do
   add_file("flipt.proto", :syntax => :proto3) do
     add_message "flipt.EvaluationRequest" do
@@ -91,6 +92,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :created_at, :message, 4, "google.protobuf.Timestamp"
       optional :updated_at, :message, 5, "google.protobuf.Timestamp"
       repeated :constraints, :message, 6, "flipt.Constraint"
+      optional :match_type, :enum, 7, "flipt.MatchType"
     end
     add_message "flipt.SegmentList" do
       repeated :segments, :message, 1, "flipt.Segment"
@@ -106,11 +108,13 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :key, :string, 1
       optional :name, :string, 2
       optional :description, :string, 3
+      optional :match_type, :enum, 4, "flipt.MatchType"
     end
     add_message "flipt.UpdateSegmentRequest" do
       optional :key, :string, 1
       optional :name, :string, 2
       optional :description, :string, 3
+      optional :match_type, :enum, 4, "flipt.MatchType"
     end
     add_message "flipt.DeleteSegmentRequest" do
       optional :key, :string, 1
@@ -210,6 +214,10 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :rule_id, :string, 3
       optional :variant_id, :string, 4
     end
+    add_enum "flipt.MatchType" do
+      value :ALL_MATCH_TYPE, 0
+      value :ANY_MATCH_TYPE, 1
+    end
     add_enum "flipt.ComparisonType" do
       value :UNKNOWN_COMPARISON_TYPE, 0
       value :STRING_COMPARISON_TYPE, 1
@@ -256,5 +264,6 @@ module Flipt
   CreateDistributionRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.CreateDistributionRequest").msgclass
   UpdateDistributionRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.UpdateDistributionRequest").msgclass
   DeleteDistributionRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.DeleteDistributionRequest").msgclass
+  MatchType = Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.MatchType").enummodule
   ComparisonType = Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.ComparisonType").enummodule
 end
