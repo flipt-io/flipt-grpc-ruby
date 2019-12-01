@@ -5,7 +5,7 @@ require 'google/protobuf'
 
 require 'google/protobuf/timestamp_pb'
 require 'google/protobuf/empty_pb'
-require 'protoc-gen-swagger/options/annotations_pb'
+
 Google::Protobuf::DescriptorPool.generated_pool.build do
   add_file("flipt.proto", :syntax => :proto3) do
     add_message "flipt.EvaluationRequest" do
