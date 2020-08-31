@@ -1,0 +1,47 @@
+name: Generate
+on: [push,workflow_dispatch]
+
+jobs:
+  generate:
+    name: 'Generate GRPC client'
+    runs-on: ubuntu-latest
+    env:
+      FLIPT_PATH: tmp/flipt
+
+    steps:
+      - name: Install Protoc
+        uses: arduino/setup-protoc@v1
+        with:
+          version: '3.x'
+
+      - uses: actions/checkout@v2
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.6
+
+      - name: Install dependencies
+        run: gem install grpc-tools
+
+      - name: Checkout Flipt
+        uses: actions/checkout@v2
+        with:
+          repository: markphelps/flipt
+          path: $FLIPT_PATH
+
+      - name: Generate Ruby client
+        run: |
+          echo "--> generating Ruby client ..."
+          grpc_tools_ruby_protoc -I $FLIPT_PATH/rpc/ --ruby_out="." --grpc_out="." $FLIPT_PATH/rpc/flipt.proto
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3.1.2
+        with:
+          commit-message: Update GRPC client
+          committer: GitHub noreply@github.com
+          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+          branch: generate-patch
+          title: 'Update GRPC client'
+          body: 'Update GRPC client from https://github.com/markphelps/flipt'
+          assignees: markphelps
+          reviewers: markphelps
