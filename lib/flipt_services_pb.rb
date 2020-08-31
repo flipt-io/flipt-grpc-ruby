@@ -14,32 +14,33 @@ module Flipt
       self.unmarshal_class_method = :decode
       self.service_name = 'flipt.Flipt'
 
-      rpc :Evaluate, EvaluationRequest, EvaluationResponse
-      rpc :GetFlag, GetFlagRequest, Flag
-      rpc :ListFlags, ListFlagRequest, FlagList
-      rpc :CreateFlag, CreateFlagRequest, Flag
-      rpc :UpdateFlag, UpdateFlagRequest, Flag
-      rpc :DeleteFlag, DeleteFlagRequest, Google::Protobuf::Empty
-      rpc :CreateVariant, CreateVariantRequest, Variant
-      rpc :UpdateVariant, UpdateVariantRequest, Variant
-      rpc :DeleteVariant, DeleteVariantRequest, Google::Protobuf::Empty
-      rpc :GetRule, GetRuleRequest, Rule
-      rpc :ListRules, ListRuleRequest, RuleList
-      rpc :OrderRules, OrderRulesRequest, Google::Protobuf::Empty
-      rpc :CreateRule, CreateRuleRequest, Rule
-      rpc :UpdateRule, UpdateRuleRequest, Rule
-      rpc :DeleteRule, DeleteRuleRequest, Google::Protobuf::Empty
-      rpc :CreateDistribution, CreateDistributionRequest, Distribution
-      rpc :UpdateDistribution, UpdateDistributionRequest, Distribution
-      rpc :DeleteDistribution, DeleteDistributionRequest, Google::Protobuf::Empty
-      rpc :GetSegment, GetSegmentRequest, Segment
-      rpc :ListSegments, ListSegmentRequest, SegmentList
-      rpc :CreateSegment, CreateSegmentRequest, Segment
-      rpc :UpdateSegment, UpdateSegmentRequest, Segment
-      rpc :DeleteSegment, DeleteSegmentRequest, Google::Protobuf::Empty
-      rpc :CreateConstraint, CreateConstraintRequest, Constraint
-      rpc :UpdateConstraint, UpdateConstraintRequest, Constraint
-      rpc :DeleteConstraint, DeleteConstraintRequest, Google::Protobuf::Empty
+      rpc :Evaluate, ::Flipt::EvaluationRequest, ::Flipt::EvaluationResponse
+      rpc :BatchEvaluate, ::Flipt::BatchEvaluationRequest, ::Flipt::BatchEvaluationResponse
+      rpc :GetFlag, ::Flipt::GetFlagRequest, ::Flipt::Flag
+      rpc :ListFlags, ::Flipt::ListFlagRequest, ::Flipt::FlagList
+      rpc :CreateFlag, ::Flipt::CreateFlagRequest, ::Flipt::Flag
+      rpc :UpdateFlag, ::Flipt::UpdateFlagRequest, ::Flipt::Flag
+      rpc :DeleteFlag, ::Flipt::DeleteFlagRequest, ::Google::Protobuf::Empty
+      rpc :CreateVariant, ::Flipt::CreateVariantRequest, ::Flipt::Variant
+      rpc :UpdateVariant, ::Flipt::UpdateVariantRequest, ::Flipt::Variant
+      rpc :DeleteVariant, ::Flipt::DeleteVariantRequest, ::Google::Protobuf::Empty
+      rpc :GetRule, ::Flipt::GetRuleRequest, ::Flipt::Rule
+      rpc :ListRules, ::Flipt::ListRuleRequest, ::Flipt::RuleList
+      rpc :OrderRules, ::Flipt::OrderRulesRequest, ::Google::Protobuf::Empty
+      rpc :CreateRule, ::Flipt::CreateRuleRequest, ::Flipt::Rule
+      rpc :UpdateRule, ::Flipt::UpdateRuleRequest, ::Flipt::Rule
+      rpc :DeleteRule, ::Flipt::DeleteRuleRequest, ::Google::Protobuf::Empty
+      rpc :CreateDistribution, ::Flipt::CreateDistributionRequest, ::Flipt::Distribution
+      rpc :UpdateDistribution, ::Flipt::UpdateDistributionRequest, ::Flipt::Distribution
+      rpc :DeleteDistribution, ::Flipt::DeleteDistributionRequest, ::Google::Protobuf::Empty
+      rpc :GetSegment, ::Flipt::GetSegmentRequest, ::Flipt::Segment
+      rpc :ListSegments, ::Flipt::ListSegmentRequest, ::Flipt::SegmentList
+      rpc :CreateSegment, ::Flipt::CreateSegmentRequest, ::Flipt::Segment
+      rpc :UpdateSegment, ::Flipt::UpdateSegmentRequest, ::Flipt::Segment
+      rpc :DeleteSegment, ::Flipt::DeleteSegmentRequest, ::Google::Protobuf::Empty
+      rpc :CreateConstraint, ::Flipt::CreateConstraintRequest, ::Flipt::Constraint
+      rpc :UpdateConstraint, ::Flipt::UpdateConstraintRequest, ::Flipt::Constraint
+      rpc :DeleteConstraint, ::Flipt::DeleteConstraintRequest, ::Google::Protobuf::Empty
     end
 
     Stub = Service.rpc_stub_class
