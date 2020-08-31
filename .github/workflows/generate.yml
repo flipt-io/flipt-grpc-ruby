@@ -38,7 +38,7 @@ jobs:
         uses: peter-evans/create-pull-request@v3.1.2
         with:
           commit-message: Update GRPC client
-          committer: GitHub noreply@github.com
+          committer: GitHub <noreply@github.com>
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
           branch: generate-patch
           title: 'Update GRPC client'
