@@ -32,7 +32,7 @@ jobs:
       - name: Generate Ruby client
         run: |
           echo "--> generating Ruby client ..."
-          grpc_tools_ruby_protoc -I $FLIPT_PATH/rpc/ --ruby_out="." --grpc_out="." $FLIPT_PATH/rpc/flipt.proto
+          grpc_tools_ruby_protoc -I $FLIPT_PATH/rpc/ --ruby_out="lib" --grpc_out="lib" $FLIPT_PATH/rpc/flipt.proto
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3.1.2
