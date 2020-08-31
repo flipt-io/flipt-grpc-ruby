@@ -5,7 +5,7 @@ require 'google/protobuf'
 
 require 'google/protobuf/timestamp_pb'
 require 'google/protobuf/empty_pb'
-
+require 'protoc-gen-swagger/options/annotations_pb'
 Google::Protobuf::DescriptorPool.generated_pool.build do
   add_file("flipt.proto", :syntax => :proto3) do
     add_message "flipt.EvaluationRequest" do
@@ -13,6 +13,10 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :flag_key, :string, 2
       optional :entity_id, :string, 3
       map :context, :string, :string, 4
+    end
+    add_message "flipt.BatchEvaluationRequest" do
+      optional :request_id, :string, 1
+      repeated :requests, :message, 2, "flipt.EvaluationRequest"
     end
     add_message "flipt.EvaluationResponse" do
       optional :request_id, :string, 1
@@ -24,6 +28,11 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :timestamp, :message, 7, "google.protobuf.Timestamp"
       optional :value, :string, 8
       optional :request_duration_millis, :double, 9
+    end
+    add_message "flipt.BatchEvaluationResponse" do
+      optional :request_id, :string, 1
+      repeated :responses, :message, 2, "flipt.EvaluationResponse"
+      optional :request_duration_millis, :double, 3
     end
     add_message "flipt.Flag" do
       optional :key, :string, 1
@@ -228,42 +237,44 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
 end
 
 module Flipt
-  EvaluationRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.EvaluationRequest").msgclass
-  EvaluationResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.EvaluationResponse").msgclass
-  Flag = Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.Flag").msgclass
-  FlagList = Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.FlagList").msgclass
-  GetFlagRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.GetFlagRequest").msgclass
-  ListFlagRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.ListFlagRequest").msgclass
-  CreateFlagRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.CreateFlagRequest").msgclass
-  UpdateFlagRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.UpdateFlagRequest").msgclass
-  DeleteFlagRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.DeleteFlagRequest").msgclass
-  Variant = Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.Variant").msgclass
-  CreateVariantRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.CreateVariantRequest").msgclass
-  UpdateVariantRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.UpdateVariantRequest").msgclass
-  DeleteVariantRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.DeleteVariantRequest").msgclass
-  Segment = Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.Segment").msgclass
-  SegmentList = Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.SegmentList").msgclass
-  GetSegmentRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.GetSegmentRequest").msgclass
-  ListSegmentRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.ListSegmentRequest").msgclass
-  CreateSegmentRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.CreateSegmentRequest").msgclass
-  UpdateSegmentRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.UpdateSegmentRequest").msgclass
-  DeleteSegmentRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.DeleteSegmentRequest").msgclass
-  Constraint = Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.Constraint").msgclass
-  CreateConstraintRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.CreateConstraintRequest").msgclass
-  UpdateConstraintRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.UpdateConstraintRequest").msgclass
-  DeleteConstraintRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.DeleteConstraintRequest").msgclass
-  Rule = Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.Rule").msgclass
-  RuleList = Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.RuleList").msgclass
-  ListRuleRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.ListRuleRequest").msgclass
-  GetRuleRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.GetRuleRequest").msgclass
-  CreateRuleRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.CreateRuleRequest").msgclass
-  UpdateRuleRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.UpdateRuleRequest").msgclass
-  DeleteRuleRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.DeleteRuleRequest").msgclass
-  OrderRulesRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.OrderRulesRequest").msgclass
-  Distribution = Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.Distribution").msgclass
-  CreateDistributionRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.CreateDistributionRequest").msgclass
-  UpdateDistributionRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.UpdateDistributionRequest").msgclass
-  DeleteDistributionRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.DeleteDistributionRequest").msgclass
-  MatchType = Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.MatchType").enummodule
-  ComparisonType = Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.ComparisonType").enummodule
+  EvaluationRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.EvaluationRequest").msgclass
+  BatchEvaluationRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.BatchEvaluationRequest").msgclass
+  EvaluationResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.EvaluationResponse").msgclass
+  BatchEvaluationResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.BatchEvaluationResponse").msgclass
+  Flag = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.Flag").msgclass
+  FlagList = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.FlagList").msgclass
+  GetFlagRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.GetFlagRequest").msgclass
+  ListFlagRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.ListFlagRequest").msgclass
+  CreateFlagRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.CreateFlagRequest").msgclass
+  UpdateFlagRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.UpdateFlagRequest").msgclass
+  DeleteFlagRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.DeleteFlagRequest").msgclass
+  Variant = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.Variant").msgclass
+  CreateVariantRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.CreateVariantRequest").msgclass
+  UpdateVariantRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.UpdateVariantRequest").msgclass
+  DeleteVariantRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.DeleteVariantRequest").msgclass
+  Segment = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.Segment").msgclass
+  SegmentList = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.SegmentList").msgclass
+  GetSegmentRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.GetSegmentRequest").msgclass
+  ListSegmentRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.ListSegmentRequest").msgclass
+  CreateSegmentRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.CreateSegmentRequest").msgclass
+  UpdateSegmentRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.UpdateSegmentRequest").msgclass
+  DeleteSegmentRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.DeleteSegmentRequest").msgclass
+  Constraint = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.Constraint").msgclass
+  CreateConstraintRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.CreateConstraintRequest").msgclass
+  UpdateConstraintRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.UpdateConstraintRequest").msgclass
+  DeleteConstraintRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.DeleteConstraintRequest").msgclass
+  Rule = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.Rule").msgclass
+  RuleList = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.RuleList").msgclass
+  ListRuleRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.ListRuleRequest").msgclass
+  GetRuleRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.GetRuleRequest").msgclass
+  CreateRuleRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.CreateRuleRequest").msgclass
+  UpdateRuleRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.UpdateRuleRequest").msgclass
+  DeleteRuleRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.DeleteRuleRequest").msgclass
+  OrderRulesRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.OrderRulesRequest").msgclass
+  Distribution = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.Distribution").msgclass
+  CreateDistributionRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.CreateDistributionRequest").msgclass
+  UpdateDistributionRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.UpdateDistributionRequest").msgclass
+  DeleteDistributionRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.DeleteDistributionRequest").msgclass
+  MatchType = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.MatchType").enummodule
+  ComparisonType = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.ComparisonType").enummodule
 end
