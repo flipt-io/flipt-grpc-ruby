@@ -1,1 +1,2 @@
-gem 'flipt-grpc', '~> 0.4', :git => 'https://github.com/markphelps/flipt-grpc-ruby', :branch => 'master'
+gem 'flipt-grpc', '~> 0.4'#, :git => 'https://github.com/markphelps/flipt-grpc-ruby', :branch => 'master'
+gem 'grpc', '~> 1.0'
