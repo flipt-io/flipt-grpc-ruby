@@ -1,16 +1,17 @@
 GIT
   remote: https://github.com/markphelps/flipt-grpc-ruby
-  revision: 5f48e27ce3d26e6fc59adebe2d8c84eb2c35be55
+  revision: f11ff1eb162314f3fce0457f12e1ab15e72b1f93
   branch: master
   specs:
-    flipt-grpc (0.1.0)
+    flipt-grpc (0.4.0)
+      googleapis-common-protos-types (~> 1.1)
       grpc (~> 1.0)
 
 GEM
   specs:
-    google-protobuf (3.9.2-universal-darwin)
-    googleapis-common-protos-types (1.0.4)
-      google-protobuf (~> 3.0)
+    google-protobuf (3.19.1-x86_64-darwin)
+    googleapis-common-protos-types (1.3.0)
+      google-protobuf (~> 3.14)
     grpc (1.24.0-universal-darwin)
       google-protobuf (~> 3.8)
       googleapis-common-protos-types (~> 1.0)
@@ -19,8 +20,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  flipt-grpc!
-  grpc (~> 1.0)
+  flipt-grpc (~> 0.4)!
 
 BUNDLED WITH
    1.17.2
