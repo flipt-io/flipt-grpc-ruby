@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["mark.aaron.phelps@gmail.com"]
 
   spec.summary       = %q{Flipt GRPC client for Ruby}
-  spec.homepage      = "https://flipt.dev"
+  spec.homepage      = "https://flipt.io"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
@@ -35,6 +35,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "grpc", "~> 1.0"
+  spec.add_dependency "googleapis-common-protos-types", "~> 1.1"
 
   spec.add_development_dependency "bundler", "~> 1.17"
   spec.add_development_dependency "rake", "~> 13.0"
