@@ -18,7 +18,7 @@ The official GRPC Ruby client for [Flipt](https://github.com/markphelps/flipt).
 
 ```ruby
 source "https://rubygems.pkg.github.com/markphelps" do
-  gem "flipt-grpc", "0.4.0"
+  gem "flipt-grpc", "0.5.0"
 end
 ```
 
@@ -28,7 +28,7 @@ end
 
 Or install it yourself as:
 
-    $ gem install flipt-grpc --version "0.4.0" --source "https://rubygems.pkg.github.com/markphelps"
+    $ gem install flipt-grpc --version "0.5.0" --source "https://rubygems.pkg.github.com/markphelps"
 
 ## Usage Example
 
