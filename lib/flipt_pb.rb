@@ -5,223 +5,229 @@ require 'google/protobuf'
 
 require 'google/protobuf/timestamp_pb'
 require 'google/protobuf/empty_pb'
-require 'protoc-gen-swagger/options/annotations_pb'
+require 'protoc-gen-openapiv2/options/annotations_pb'
+
 Google::Protobuf::DescriptorPool.generated_pool.build do
   add_file("flipt.proto", :syntax => :proto3) do
     add_message "flipt.EvaluationRequest" do
-      optional :request_id, :string, 1
-      optional :flag_key, :string, 2
-      optional :entity_id, :string, 3
+      optional :request_id, :string, 1, json_name: "requestId"
+      optional :flag_key, :string, 2, json_name: "flagKey"
+      optional :entity_id, :string, 3, json_name: "entityId"
       map :context, :string, :string, 4
     end
     add_message "flipt.BatchEvaluationRequest" do
-      optional :request_id, :string, 1
-      repeated :requests, :message, 2, "flipt.EvaluationRequest"
+      optional :request_id, :string, 1, json_name: "requestId"
+      repeated :requests, :message, 2, "flipt.EvaluationRequest", json_name: "requests"
+      optional :exclude_not_found, :bool, 3, json_name: "excludeNotFound"
     end
     add_message "flipt.EvaluationResponse" do
-      optional :request_id, :string, 1
-      optional :entity_id, :string, 2
+      optional :request_id, :string, 1, json_name: "requestId"
+      optional :entity_id, :string, 2, json_name: "entityId"
       map :request_context, :string, :string, 3
-      optional :match, :bool, 4
-      optional :flag_key, :string, 5
-      optional :segment_key, :string, 6
-      optional :timestamp, :message, 7, "google.protobuf.Timestamp"
-      optional :value, :string, 8
-      optional :request_duration_millis, :double, 9
+      optional :match, :bool, 4, json_name: "match"
+      optional :flag_key, :string, 5, json_name: "flagKey"
+      optional :segment_key, :string, 6, json_name: "segmentKey"
+      optional :timestamp, :message, 7, "google.protobuf.Timestamp", json_name: "timestamp"
+      optional :value, :string, 8, json_name: "value"
+      optional :request_duration_millis, :double, 9, json_name: "requestDurationMillis"
+      optional :attachment, :string, 10, json_name: "attachment"
     end
     add_message "flipt.BatchEvaluationResponse" do
-      optional :request_id, :string, 1
-      repeated :responses, :message, 2, "flipt.EvaluationResponse"
-      optional :request_duration_millis, :double, 3
+      optional :request_id, :string, 1, json_name: "requestId"
+      repeated :responses, :message, 2, "flipt.EvaluationResponse", json_name: "responses"
+      optional :request_duration_millis, :double, 3, json_name: "requestDurationMillis"
     end
     add_message "flipt.Flag" do
-      optional :key, :string, 1
-      optional :name, :string, 2
-      optional :description, :string, 3
-      optional :enabled, :bool, 4
-      optional :created_at, :message, 5, "google.protobuf.Timestamp"
-      optional :updated_at, :message, 6, "google.protobuf.Timestamp"
-      repeated :variants, :message, 7, "flipt.Variant"
+      optional :key, :string, 1, json_name: "key"
+      optional :name, :string, 2, json_name: "name"
+      optional :description, :string, 3, json_name: "description"
+      optional :enabled, :bool, 4, json_name: "enabled"
+      optional :created_at, :message, 5, "google.protobuf.Timestamp", json_name: "createdAt"
+      optional :updated_at, :message, 6, "google.protobuf.Timestamp", json_name: "updatedAt"
+      repeated :variants, :message, 7, "flipt.Variant", json_name: "variants"
     end
     add_message "flipt.FlagList" do
-      repeated :flags, :message, 1, "flipt.Flag"
+      repeated :flags, :message, 1, "flipt.Flag", json_name: "flags"
     end
     add_message "flipt.GetFlagRequest" do
-      optional :key, :string, 1
+      optional :key, :string, 1, json_name: "key"
     end
     add_message "flipt.ListFlagRequest" do
-      optional :limit, :int32, 1
-      optional :offset, :int32, 2
+      optional :limit, :int32, 1, json_name: "limit"
+      optional :offset, :int32, 2, json_name: "offset"
     end
     add_message "flipt.CreateFlagRequest" do
-      optional :key, :string, 1
-      optional :name, :string, 2
-      optional :description, :string, 3
-      optional :enabled, :bool, 4
+      optional :key, :string, 1, json_name: "key"
+      optional :name, :string, 2, json_name: "name"
+      optional :description, :string, 3, json_name: "description"
+      optional :enabled, :bool, 4, json_name: "enabled"
     end
     add_message "flipt.UpdateFlagRequest" do
-      optional :key, :string, 1
-      optional :name, :string, 2
-      optional :description, :string, 3
-      optional :enabled, :bool, 4
+      optional :key, :string, 1, json_name: "key"
+      optional :name, :string, 2, json_name: "name"
+      optional :description, :string, 3, json_name: "description"
+      optional :enabled, :bool, 4, json_name: "enabled"
     end
     add_message "flipt.DeleteFlagRequest" do
-      optional :key, :string, 1
+      optional :key, :string, 1, json_name: "key"
     end
     add_message "flipt.Variant" do
-      optional :id, :string, 1
-      optional :flag_key, :string, 2
-      optional :key, :string, 3
-      optional :name, :string, 4
-      optional :description, :string, 5
-      optional :created_at, :message, 6, "google.protobuf.Timestamp"
-      optional :updated_at, :message, 7, "google.protobuf.Timestamp"
+      optional :id, :string, 1, json_name: "id"
+      optional :flag_key, :string, 2, json_name: "flagKey"
+      optional :key, :string, 3, json_name: "key"
+      optional :name, :string, 4, json_name: "name"
+      optional :description, :string, 5, json_name: "description"
+      optional :created_at, :message, 6, "google.protobuf.Timestamp", json_name: "createdAt"
+      optional :updated_at, :message, 7, "google.protobuf.Timestamp", json_name: "updatedAt"
+      optional :attachment, :string, 8, json_name: "attachment"
     end
     add_message "flipt.CreateVariantRequest" do
-      optional :flag_key, :string, 1
-      optional :key, :string, 2
-      optional :name, :string, 3
-      optional :description, :string, 4
+      optional :flag_key, :string, 1, json_name: "flagKey"
+      optional :key, :string, 2, json_name: "key"
+      optional :name, :string, 3, json_name: "name"
+      optional :description, :string, 4, json_name: "description"
+      optional :attachment, :string, 5, json_name: "attachment"
     end
     add_message "flipt.UpdateVariantRequest" do
-      optional :id, :string, 1
-      optional :flag_key, :string, 2
-      optional :key, :string, 3
-      optional :name, :string, 4
-      optional :description, :string, 5
+      optional :id, :string, 1, json_name: "id"
+      optional :flag_key, :string, 2, json_name: "flagKey"
+      optional :key, :string, 3, json_name: "key"
+      optional :name, :string, 4, json_name: "name"
+      optional :description, :string, 5, json_name: "description"
+      optional :attachment, :string, 6, json_name: "attachment"
     end
     add_message "flipt.DeleteVariantRequest" do
-      optional :id, :string, 1
-      optional :flag_key, :string, 2
+      optional :id, :string, 1, json_name: "id"
+      optional :flag_key, :string, 2, json_name: "flagKey"
     end
     add_message "flipt.Segment" do
-      optional :key, :string, 1
-      optional :name, :string, 2
-      optional :description, :string, 3
-      optional :created_at, :message, 4, "google.protobuf.Timestamp"
-      optional :updated_at, :message, 5, "google.protobuf.Timestamp"
-      repeated :constraints, :message, 6, "flipt.Constraint"
-      optional :match_type, :enum, 7, "flipt.MatchType"
+      optional :key, :string, 1, json_name: "key"
+      optional :name, :string, 2, json_name: "name"
+      optional :description, :string, 3, json_name: "description"
+      optional :created_at, :message, 4, "google.protobuf.Timestamp", json_name: "createdAt"
+      optional :updated_at, :message, 5, "google.protobuf.Timestamp", json_name: "updatedAt"
+      repeated :constraints, :message, 6, "flipt.Constraint", json_name: "constraints"
+      optional :match_type, :enum, 7, "flipt.MatchType", json_name: "matchType"
     end
     add_message "flipt.SegmentList" do
-      repeated :segments, :message, 1, "flipt.Segment"
+      repeated :segments, :message, 1, "flipt.Segment", json_name: "segments"
     end
     add_message "flipt.GetSegmentRequest" do
-      optional :key, :string, 1
+      optional :key, :string, 1, json_name: "key"
     end
     add_message "flipt.ListSegmentRequest" do
-      optional :limit, :int32, 1
-      optional :offset, :int32, 2
+      optional :limit, :int32, 1, json_name: "limit"
+      optional :offset, :int32, 2, json_name: "offset"
     end
     add_message "flipt.CreateSegmentRequest" do
-      optional :key, :string, 1
-      optional :name, :string, 2
-      optional :description, :string, 3
-      optional :match_type, :enum, 4, "flipt.MatchType"
+      optional :key, :string, 1, json_name: "key"
+      optional :name, :string, 2, json_name: "name"
+      optional :description, :string, 3, json_name: "description"
+      optional :match_type, :enum, 4, "flipt.MatchType", json_name: "matchType"
     end
     add_message "flipt.UpdateSegmentRequest" do
-      optional :key, :string, 1
-      optional :name, :string, 2
-      optional :description, :string, 3
-      optional :match_type, :enum, 4, "flipt.MatchType"
+      optional :key, :string, 1, json_name: "key"
+      optional :name, :string, 2, json_name: "name"
+      optional :description, :string, 3, json_name: "description"
+      optional :match_type, :enum, 4, "flipt.MatchType", json_name: "matchType"
     end
     add_message "flipt.DeleteSegmentRequest" do
-      optional :key, :string, 1
+      optional :key, :string, 1, json_name: "key"
     end
     add_message "flipt.Constraint" do
-      optional :id, :string, 1
-      optional :segment_key, :string, 2
-      optional :type, :enum, 3, "flipt.ComparisonType"
-      optional :property, :string, 4
-      optional :operator, :string, 5
-      optional :value, :string, 6
-      optional :created_at, :message, 7, "google.protobuf.Timestamp"
-      optional :updated_at, :message, 8, "google.protobuf.Timestamp"
+      optional :id, :string, 1, json_name: "id"
+      optional :segment_key, :string, 2, json_name: "segmentKey"
+      optional :type, :enum, 3, "flipt.ComparisonType", json_name: "type"
+      optional :property, :string, 4, json_name: "property"
+      optional :operator, :string, 5, json_name: "operator"
+      optional :value, :string, 6, json_name: "value"
+      optional :created_at, :message, 7, "google.protobuf.Timestamp", json_name: "createdAt"
+      optional :updated_at, :message, 8, "google.protobuf.Timestamp", json_name: "updatedAt"
     end
     add_message "flipt.CreateConstraintRequest" do
-      optional :segment_key, :string, 1
-      optional :type, :enum, 2, "flipt.ComparisonType"
-      optional :property, :string, 3
-      optional :operator, :string, 4
-      optional :value, :string, 5
+      optional :segment_key, :string, 1, json_name: "segmentKey"
+      optional :type, :enum, 2, "flipt.ComparisonType", json_name: "type"
+      optional :property, :string, 3, json_name: "property"
+      optional :operator, :string, 4, json_name: "operator"
+      optional :value, :string, 5, json_name: "value"
     end
     add_message "flipt.UpdateConstraintRequest" do
-      optional :id, :string, 1
-      optional :segment_key, :string, 2
-      optional :type, :enum, 3, "flipt.ComparisonType"
-      optional :property, :string, 4
-      optional :operator, :string, 5
-      optional :value, :string, 6
+      optional :id, :string, 1, json_name: "id"
+      optional :segment_key, :string, 2, json_name: "segmentKey"
+      optional :type, :enum, 3, "flipt.ComparisonType", json_name: "type"
+      optional :property, :string, 4, json_name: "property"
+      optional :operator, :string, 5, json_name: "operator"
+      optional :value, :string, 6, json_name: "value"
     end
     add_message "flipt.DeleteConstraintRequest" do
-      optional :id, :string, 1
-      optional :segment_key, :string, 2
+      optional :id, :string, 1, json_name: "id"
+      optional :segment_key, :string, 2, json_name: "segmentKey"
     end
     add_message "flipt.Rule" do
-      optional :id, :string, 1
-      optional :flag_key, :string, 2
-      optional :segment_key, :string, 3
-      repeated :distributions, :message, 4, "flipt.Distribution"
-      optional :rank, :int32, 5
-      optional :created_at, :message, 6, "google.protobuf.Timestamp"
-      optional :updated_at, :message, 7, "google.protobuf.Timestamp"
+      optional :id, :string, 1, json_name: "id"
+      optional :flag_key, :string, 2, json_name: "flagKey"
+      optional :segment_key, :string, 3, json_name: "segmentKey"
+      repeated :distributions, :message, 4, "flipt.Distribution", json_name: "distributions"
+      optional :rank, :int32, 5, json_name: "rank"
+      optional :created_at, :message, 6, "google.protobuf.Timestamp", json_name: "createdAt"
+      optional :updated_at, :message, 7, "google.protobuf.Timestamp", json_name: "updatedAt"
     end
     add_message "flipt.RuleList" do
-      repeated :rules, :message, 1, "flipt.Rule"
+      repeated :rules, :message, 1, "flipt.Rule", json_name: "rules"
     end
     add_message "flipt.ListRuleRequest" do
-      optional :limit, :int32, 1
-      optional :offset, :int32, 2
-      optional :flag_key, :string, 3
+      optional :limit, :int32, 1, json_name: "limit"
+      optional :offset, :int32, 2, json_name: "offset"
+      optional :flag_key, :string, 3, json_name: "flagKey"
     end
     add_message "flipt.GetRuleRequest" do
-      optional :id, :string, 1
-      optional :flag_key, :string, 2
+      optional :id, :string, 1, json_name: "id"
+      optional :flag_key, :string, 2, json_name: "flagKey"
     end
     add_message "flipt.CreateRuleRequest" do
-      optional :flag_key, :string, 1
-      optional :segment_key, :string, 2
-      optional :rank, :int32, 3
+      optional :flag_key, :string, 1, json_name: "flagKey"
+      optional :segment_key, :string, 2, json_name: "segmentKey"
+      optional :rank, :int32, 3, json_name: "rank"
     end
     add_message "flipt.UpdateRuleRequest" do
-      optional :id, :string, 1
-      optional :flag_key, :string, 2
-      optional :segment_key, :string, 3
+      optional :id, :string, 1, json_name: "id"
+      optional :flag_key, :string, 2, json_name: "flagKey"
+      optional :segment_key, :string, 3, json_name: "segmentKey"
     end
     add_message "flipt.DeleteRuleRequest" do
-      optional :id, :string, 1
-      optional :flag_key, :string, 2
+      optional :id, :string, 1, json_name: "id"
+      optional :flag_key, :string, 2, json_name: "flagKey"
     end
     add_message "flipt.OrderRulesRequest" do
-      optional :flag_key, :string, 1
-      repeated :rule_ids, :string, 2
+      optional :flag_key, :string, 1, json_name: "flagKey"
+      repeated :rule_ids, :string, 2, json_name: "ruleIds"
     end
     add_message "flipt.Distribution" do
-      optional :id, :string, 1
-      optional :rule_id, :string, 2
-      optional :variant_id, :string, 3
-      optional :rollout, :float, 4
-      optional :created_at, :message, 5, "google.protobuf.Timestamp"
-      optional :updated_at, :message, 6, "google.protobuf.Timestamp"
+      optional :id, :string, 1, json_name: "id"
+      optional :rule_id, :string, 2, json_name: "ruleId"
+      optional :variant_id, :string, 3, json_name: "variantId"
+      optional :rollout, :float, 4, json_name: "rollout"
+      optional :created_at, :message, 5, "google.protobuf.Timestamp", json_name: "createdAt"
+      optional :updated_at, :message, 6, "google.protobuf.Timestamp", json_name: "updatedAt"
     end
     add_message "flipt.CreateDistributionRequest" do
-      optional :flag_key, :string, 1
-      optional :rule_id, :string, 2
-      optional :variant_id, :string, 3
-      optional :rollout, :float, 4
+      optional :flag_key, :string, 1, json_name: "flagKey"
+      optional :rule_id, :string, 2, json_name: "ruleId"
+      optional :variant_id, :string, 3, json_name: "variantId"
+      optional :rollout, :float, 4, json_name: "rollout"
     end
     add_message "flipt.UpdateDistributionRequest" do
-      optional :id, :string, 1
-      optional :flag_key, :string, 2
-      optional :rule_id, :string, 3
-      optional :variant_id, :string, 4
-      optional :rollout, :float, 5
+      optional :id, :string, 1, json_name: "id"
+      optional :flag_key, :string, 2, json_name: "flagKey"
+      optional :rule_id, :string, 3, json_name: "ruleId"
+      optional :variant_id, :string, 4, json_name: "variantId"
+      optional :rollout, :float, 5, json_name: "rollout"
     end
     add_message "flipt.DeleteDistributionRequest" do
-      optional :id, :string, 1
-      optional :flag_key, :string, 2
-      optional :rule_id, :string, 3
-      optional :variant_id, :string, 4
+      optional :id, :string, 1, json_name: "id"
+      optional :flag_key, :string, 2, json_name: "flagKey"
+      optional :rule_id, :string, 3, json_name: "ruleId"
+      optional :variant_id, :string, 4, json_name: "variantId"
     end
     add_enum "flipt.MatchType" do
       value :ALL_MATCH_TYPE, 0
