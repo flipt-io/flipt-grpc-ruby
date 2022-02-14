@@ -5,6 +5,7 @@ require 'google/protobuf'
 
 require 'google/protobuf/timestamp_pb'
 require 'google/protobuf/empty_pb'
+require 'protoc-gen-openapiv2/options/annotations_pb'
 
 Google::Protobuf::DescriptorPool.generated_pool.build do
   add_file("flipt.proto", :syntax => :proto3) do
@@ -29,6 +30,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :timestamp, :message, 7, "google.protobuf.Timestamp", json_name: "timestamp"
       optional :value, :string, 8, json_name: "value"
       optional :request_duration_millis, :double, 9, json_name: "requestDurationMillis"
+      optional :attachment, :string, 10, json_name: "attachment"
     end
     add_message "flipt.BatchEvaluationResponse" do
       optional :request_id, :string, 1, json_name: "requestId"
@@ -77,12 +79,14 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :description, :string, 5, json_name: "description"
       optional :created_at, :message, 6, "google.protobuf.Timestamp", json_name: "createdAt"
       optional :updated_at, :message, 7, "google.protobuf.Timestamp", json_name: "updatedAt"
+      optional :attachment, :string, 8, json_name: "attachment"
     end
     add_message "flipt.CreateVariantRequest" do
       optional :flag_key, :string, 1, json_name: "flagKey"
       optional :key, :string, 2, json_name: "key"
       optional :name, :string, 3, json_name: "name"
       optional :description, :string, 4, json_name: "description"
+      optional :attachment, :string, 5, json_name: "attachment"
     end
     add_message "flipt.UpdateVariantRequest" do
       optional :id, :string, 1, json_name: "id"
@@ -90,6 +94,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :key, :string, 3, json_name: "key"
       optional :name, :string, 4, json_name: "name"
       optional :description, :string, 5, json_name: "description"
+      optional :attachment, :string, 6, json_name: "attachment"
     end
     add_message "flipt.DeleteVariantRequest" do
       optional :id, :string, 1, json_name: "id"
