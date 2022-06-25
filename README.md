@@ -11,24 +11,24 @@ The official GRPC Ruby client for [Flipt](https://github.com/markphelps/flipt).
 ```
 :sources:
 - https://rubygems.org/
-- https://{GITHUB_USERNAME}:{GITHUB_TOKEN}@rubygems.pkg.github.com/markphelps/
+- https://{GITHUB_USERNAME}:{GITHUB_TOKEN}@rubygems.pkg.github.com/flipt-io/
 ```
 
 3. Add this line to your application's Gemfile:
 
 ```ruby
-source "https://rubygems.pkg.github.com/markphelps" do
-  gem "flipt-grpc", "0.5.0"
+source "https://rubygems.pkg.github.com/flipt-io" do
+  gem "flipt-grpc", "1.0.0"
 end
 ```
 
 4. And then execute:
 
-    `$ bundle`
+   `$ bundle`
 
 Or install it yourself as:
 
-    $ gem install flipt-grpc --version "0.5.0" --source "https://rubygems.pkg.github.com/markphelps"
+    $ gem install flipt-grpc --version "0.5.0" --source "https://rubygems.pkg.github.com/flipt-io"
 
 ## Usage Example
 
@@ -44,13 +44,13 @@ Or install it yourself as:
 
 5. `bundle exec flipt.rb`
 
-    ```shell
-    Available Flags: [<Flipt::Flag: key: "flipt-ruby", name: "Flipt Ruby", description: "I'm flipt from Ruby", enabled: true, created_at: <Google::Protobuf::Timestamp: seconds: 1571496667, nanos: 305497800>, updated_at: <Google::Protobuf::Timestamp: seconds: 1571496667, nanos: 305497800>, variants: []>]
-    ```
+   ```shell
+   Available Flags: [<Flipt::Flag: key: "flipt-ruby", name: "Flipt Ruby", description: "I'm flipt from Ruby", enabled: true, created_at: <Google::Protobuf::Timestamp: seconds: 1571496667, nanos: 305497800>, updated_at: <Google::Protobuf::Timestamp: seconds: 1571496667, nanos: 305497800>, variants: []>]
+   ```
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at [https://github.com/markphelps/flipt-grpc-ruby](https://github.com/markphelps/flipt-grpc-ruby).
+Bug reports and pull requests are welcome on GitHub at [https://github.com/flipt-io/flipt-grpc-ruby](https://github.com/flipt-io/flipt-grpc-ruby).
 
 ## License
 

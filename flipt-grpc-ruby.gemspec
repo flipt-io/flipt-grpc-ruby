@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = "flipt-grpc"
   spec.version       = Flipt::VERSION
   spec.authors       = ["Mark Phelps"]
-  spec.email         = ["mark.aaron.phelps@gmail.com"]
+  spec.email         = ["dev@flipt.io"]
 
   spec.summary       = %q{Flipt GRPC client for Ruby}
   spec.homepage      = "https://flipt.io"
@@ -16,11 +16,11 @@ Gem::Specification.new do |spec|
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
   if spec.respond_to?(:metadata)
-    spec.metadata["allowed_push_host"] = "https://rubygems.pkg.github.com/markphelps"
+    spec.metadata["allowed_push_host"] = "https://rubygems.pkg.github.com/flipt-io"
 
     spec.metadata["homepage_uri"] = spec.homepage
-    spec.metadata["source_code_uri"] = "https://github.com/markphelps/flipt-grpc-ruby"
-    spec.metadata["github_repo"] = "https://github.com/markphelps/flipt-grpc-ruby"
+    spec.metadata["source_code_uri"] = "https://github.com/flipt-io/flipt-grpc-ruby"
+    spec.metadata["github_repo"] = "https://github.com/flipt-io/flipt-grpc-ruby"
   else
     raise "RubyGems 2.0 or newer is required to protect against " \
       "public gem pushes."
