@@ -28,7 +28,7 @@ end
 
 Or install it yourself as:
 
-    $ gem install flipt-grpc --version "0.5.0" --source "https://rubygems.pkg.github.com/flipt-io"
+    $ gem install flipt-grpc --version "1.0.0" --source "https://rubygems.pkg.github.com/flipt-io"
 
 ## Usage Example
 
