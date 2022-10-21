@@ -48,6 +48,8 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     end
     add_message "flipt.FlagList" do
       repeated :flags, :message, 1, "flipt.Flag", json_name: "flags"
+      optional :next_page_token, :string, 2, json_name: "nextPageToken"
+      optional :total_count, :int32, 3, json_name: "totalCount"
     end
     add_message "flipt.GetFlagRequest" do
       optional :key, :string, 1, json_name: "key"
@@ -55,6 +57,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     add_message "flipt.ListFlagRequest" do
       optional :limit, :int32, 1, json_name: "limit"
       optional :offset, :int32, 2, json_name: "offset"
+      optional :page_token, :string, 3, json_name: "pageToken"
     end
     add_message "flipt.CreateFlagRequest" do
       optional :key, :string, 1, json_name: "key"
@@ -111,6 +114,8 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     end
     add_message "flipt.SegmentList" do
       repeated :segments, :message, 1, "flipt.Segment", json_name: "segments"
+      optional :next_page_token, :string, 2, json_name: "nextPageToken"
+      optional :total_count, :int32, 3, json_name: "totalCount"
     end
     add_message "flipt.GetSegmentRequest" do
       optional :key, :string, 1, json_name: "key"
@@ -118,6 +123,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     add_message "flipt.ListSegmentRequest" do
       optional :limit, :int32, 1, json_name: "limit"
       optional :offset, :int32, 2, json_name: "offset"
+      optional :page_token, :string, 3, json_name: "pageToken"
     end
     add_message "flipt.CreateSegmentRequest" do
       optional :key, :string, 1, json_name: "key"
@@ -174,11 +180,14 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     end
     add_message "flipt.RuleList" do
       repeated :rules, :message, 1, "flipt.Rule", json_name: "rules"
+      optional :next_page_token, :string, 2, json_name: "nextPageToken"
+      optional :total_count, :int32, 3, json_name: "totalCount"
     end
     add_message "flipt.ListRuleRequest" do
       optional :limit, :int32, 1, json_name: "limit"
       optional :offset, :int32, 2, json_name: "offset"
       optional :flag_key, :string, 3, json_name: "flagKey"
+      optional :page_token, :string, 4, json_name: "pageToken"
     end
     add_message "flipt.GetRuleRequest" do
       optional :id, :string, 1, json_name: "id"
