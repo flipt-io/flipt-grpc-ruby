@@ -31,6 +31,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :value, :string, 8, json_name: "value"
       optional :request_duration_millis, :double, 9, json_name: "requestDurationMillis"
       optional :attachment, :string, 10, json_name: "attachment"
+      optional :reason, :enum, 11, "flipt.EvaluationReason", json_name: "reason"
     end
     add_message "flipt.BatchEvaluationResponse" do
       optional :request_id, :string, 1, json_name: "requestId"
@@ -238,6 +239,13 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :rule_id, :string, 3, json_name: "ruleId"
       optional :variant_id, :string, 4, json_name: "variantId"
     end
+    add_enum "flipt.EvaluationReason" do
+      value :UNKNOWN_EVALUATION_REASON, 0
+      value :FLAG_DISABLED_EVALUATION_REASON, 1
+      value :FLAG_NOT_FOUND_EVALUATION_REASON, 2
+      value :MATCH_EVALUATION_REASON, 3
+      value :ERROR_EVALUATION_REASON, 4
+    end
     add_enum "flipt.MatchType" do
       value :ALL_MATCH_TYPE, 0
       value :ANY_MATCH_TYPE, 1
@@ -290,6 +298,7 @@ module Flipt
   CreateDistributionRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.CreateDistributionRequest").msgclass
   UpdateDistributionRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.UpdateDistributionRequest").msgclass
   DeleteDistributionRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.DeleteDistributionRequest").msgclass
+  EvaluationReason = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.EvaluationReason").enummodule
   MatchType = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.MatchType").enummodule
   ComparisonType = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.ComparisonType").enummodule
 end
