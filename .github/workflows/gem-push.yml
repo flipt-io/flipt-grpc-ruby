@@ -3,7 +3,7 @@ name: Build and Push Ruby Gem
 on:
   workflow_dispatch:
   release:
-    types: [published]
+    types: [released]
 
 jobs:
   build:
