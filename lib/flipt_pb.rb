@@ -3,8 +3,8 @@
 
 require 'google/protobuf'
 
-require 'google/protobuf/timestamp_pb'
 require 'google/protobuf/empty_pb'
+require 'google/protobuf/timestamp_pb'
 require 'protoc-gen-openapiv2/options/annotations_pb'
 
 Google::Protobuf::DescriptorPool.generated_pool.build do
