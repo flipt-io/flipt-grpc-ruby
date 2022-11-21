@@ -1,7 +1,6 @@
 name: Build and Push Ruby Gem
 
 on:
-  workflow_dispatch:
   release:
     types: [released]
 
@@ -9,9 +8,6 @@ jobs:
   build:
     name: Build + Push
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
 
     steps:
       - uses: actions/checkout@v2
@@ -27,5 +23,5 @@ jobs:
           gem build *.gemspec
           gem push --KEY github --host https://rubygems.pkg.github.com/${OWNER} *.gem
         env:
-          GEM_HOST_API_KEY: "Bearer ${{secrets.GITHUB_TOKEN}}"
+          GEM_HOST_API_KEY: "Bearer ${{secrets.RELEASE_TOKEN}}"
           OWNER: ${{ github.repository_owner }}
