@@ -5,13 +5,14 @@ on:
   release:
     types: [released]
 
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   build:
     name: Build + Push
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
 
     steps:
       - uses: actions/checkout@v2
