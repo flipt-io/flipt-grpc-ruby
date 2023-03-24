@@ -4,9 +4,8 @@
 require 'google/protobuf'
 
 require 'google/protobuf/empty_pb'
-require 'google/protobuf/timestamp_pb'
 require 'google/protobuf/struct_pb'
-require 'protoc-gen-openapiv2/options/annotations_pb'
+require 'google/protobuf/timestamp_pb'
 
 Google::Protobuf::DescriptorPool.generated_pool.build do
   add_file("auth/auth.proto", :syntax => :proto3) do
@@ -70,10 +69,18 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :client_token, :string, 1, json_name: "clientToken"
       optional :authentication, :message, 2, "flipt.auth.Authentication", json_name: "authentication"
     end
+    add_message "flipt.auth.VerifyServiceAccountRequest" do
+      optional :service_account_token, :string, 1, json_name: "serviceAccountToken"
+    end
+    add_message "flipt.auth.VerifyServiceAccountResponse" do
+      optional :client_token, :string, 1, json_name: "clientToken"
+      optional :authentication, :message, 2, "flipt.auth.Authentication", json_name: "authentication"
+    end
     add_enum "flipt.auth.Method" do
       value :METHOD_NONE, 0
       value :METHOD_TOKEN, 1
       value :METHOD_OIDC, 2
+      value :METHOD_KUBERNETES, 3
     end
   end
 end
@@ -94,6 +101,8 @@ module Flipt
     AuthorizeURLResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.auth.AuthorizeURLResponse").msgclass
     CallbackRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.auth.CallbackRequest").msgclass
     CallbackResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.auth.CallbackResponse").msgclass
+    VerifyServiceAccountRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.auth.VerifyServiceAccountRequest").msgclass
+    VerifyServiceAccountResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.auth.VerifyServiceAccountResponse").msgclass
     Method = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.auth.Method").enummodule
   end
 end

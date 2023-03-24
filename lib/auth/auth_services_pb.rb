@@ -67,5 +67,19 @@ module Flipt
 
       Stub = Service.rpc_stub_class
     end
+    module AuthenticationMethodKubernetesService
+      class Service
+
+        include ::GRPC::GenericService
+
+        self.marshal_class_method = :encode
+        self.unmarshal_class_method = :decode
+        self.service_name = 'flipt.auth.AuthenticationMethodKubernetesService'
+
+        rpc :VerifyServiceAccount, ::Flipt::Auth::VerifyServiceAccountRequest, ::Flipt::Auth::VerifyServiceAccountResponse
+      end
+
+      Stub = Service.rpc_stub_class
+    end
   end
 end
