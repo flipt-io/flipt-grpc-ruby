@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.1](https://github.com/flipt-io/flipt-grpc-ruby/compare/v1.4.0...v1.4.1) (2023-03-24)
+
+
+### Bug Fixes
+
+* generate protobuf without openapi annotations ([d4a009e](https://github.com/flipt-io/flipt-grpc-ruby/commit/d4a009e751ea3234c0e9a9a5817923b21654eaa8))
+
 ## [1.4.0](https://github.com/flipt-io/flipt-grpc-ruby/compare/v1.3.0...v1.4.0) (2023-01-23)
 
 
