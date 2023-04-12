@@ -16,6 +16,11 @@ module Flipt
 
       rpc :Evaluate, ::Flipt::EvaluationRequest, ::Flipt::EvaluationResponse
       rpc :BatchEvaluate, ::Flipt::BatchEvaluationRequest, ::Flipt::BatchEvaluationResponse
+      rpc :GetNamespace, ::Flipt::GetNamespaceRequest, ::Flipt::Namespace
+      rpc :ListNamespaces, ::Flipt::ListNamespaceRequest, ::Flipt::NamespaceList
+      rpc :CreateNamespace, ::Flipt::CreateNamespaceRequest, ::Flipt::Namespace
+      rpc :UpdateNamespace, ::Flipt::UpdateNamespaceRequest, ::Flipt::Namespace
+      rpc :DeleteNamespace, ::Flipt::DeleteNamespaceRequest, ::Google::Protobuf::Empty
       rpc :GetFlag, ::Flipt::GetFlagRequest, ::Flipt::Flag
       rpc :ListFlags, ::Flipt::ListFlagRequest, ::Flipt::FlagList
       rpc :CreateFlag, ::Flipt::CreateFlagRequest, ::Flipt::Flag

@@ -13,11 +13,13 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :flag_key, :string, 2, json_name: "flagKey"
       optional :entity_id, :string, 3, json_name: "entityId"
       map :context, :string, :string, 4
+      optional :namespace_key, :string, 5, json_name: "namespaceKey"
     end
     add_message "flipt.BatchEvaluationRequest" do
       optional :request_id, :string, 1, json_name: "requestId"
       repeated :requests, :message, 2, "flipt.EvaluationRequest", json_name: "requests"
       optional :exclude_not_found, :bool, 3, json_name: "excludeNotFound"
+      optional :namespace_key, :string, 4, json_name: "namespaceKey"
     end
     add_message "flipt.EvaluationResponse" do
       optional :request_id, :string, 1, json_name: "requestId"
@@ -31,11 +33,46 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :request_duration_millis, :double, 9, json_name: "requestDurationMillis"
       optional :attachment, :string, 10, json_name: "attachment"
       optional :reason, :enum, 11, "flipt.EvaluationReason", json_name: "reason"
+      optional :namespace_key, :string, 12, json_name: "namespaceKey"
     end
     add_message "flipt.BatchEvaluationResponse" do
       optional :request_id, :string, 1, json_name: "requestId"
       repeated :responses, :message, 2, "flipt.EvaluationResponse", json_name: "responses"
       optional :request_duration_millis, :double, 3, json_name: "requestDurationMillis"
+    end
+    add_message "flipt.Namespace" do
+      optional :key, :string, 1, json_name: "key"
+      optional :name, :string, 2, json_name: "name"
+      optional :description, :string, 3, json_name: "description"
+      optional :protected, :bool, 4, json_name: "protected"
+      optional :created_at, :message, 5, "google.protobuf.Timestamp", json_name: "createdAt"
+      optional :updated_at, :message, 6, "google.protobuf.Timestamp", json_name: "updatedAt"
+    end
+    add_message "flipt.NamespaceList" do
+      repeated :namespaces, :message, 1, "flipt.Namespace", json_name: "namespaces"
+      optional :next_page_token, :string, 2, json_name: "nextPageToken"
+      optional :total_count, :int32, 3, json_name: "totalCount"
+    end
+    add_message "flipt.GetNamespaceRequest" do
+      optional :key, :string, 1, json_name: "key"
+    end
+    add_message "flipt.ListNamespaceRequest" do
+      optional :limit, :int32, 1, json_name: "limit"
+      optional :offset, :int32, 2, json_name: "offset"
+      optional :page_token, :string, 3, json_name: "pageToken"
+    end
+    add_message "flipt.CreateNamespaceRequest" do
+      optional :key, :string, 1, json_name: "key"
+      optional :name, :string, 2, json_name: "name"
+      optional :description, :string, 3, json_name: "description"
+    end
+    add_message "flipt.UpdateNamespaceRequest" do
+      optional :key, :string, 1, json_name: "key"
+      optional :name, :string, 2, json_name: "name"
+      optional :description, :string, 3, json_name: "description"
+    end
+    add_message "flipt.DeleteNamespaceRequest" do
+      optional :key, :string, 1, json_name: "key"
     end
     add_message "flipt.Flag" do
       optional :key, :string, 1, json_name: "key"
@@ -45,6 +82,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :created_at, :message, 5, "google.protobuf.Timestamp", json_name: "createdAt"
       optional :updated_at, :message, 6, "google.protobuf.Timestamp", json_name: "updatedAt"
       repeated :variants, :message, 7, "flipt.Variant", json_name: "variants"
+      optional :namespace_key, :string, 8, json_name: "namespaceKey"
     end
     add_message "flipt.FlagList" do
       repeated :flags, :message, 1, "flipt.Flag", json_name: "flags"
@@ -53,26 +91,31 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     end
     add_message "flipt.GetFlagRequest" do
       optional :key, :string, 1, json_name: "key"
+      optional :namespace_key, :string, 2, json_name: "namespaceKey"
     end
     add_message "flipt.ListFlagRequest" do
       optional :limit, :int32, 1, json_name: "limit"
       optional :offset, :int32, 2, json_name: "offset"
       optional :page_token, :string, 3, json_name: "pageToken"
+      optional :namespace_key, :string, 4, json_name: "namespaceKey"
     end
     add_message "flipt.CreateFlagRequest" do
       optional :key, :string, 1, json_name: "key"
       optional :name, :string, 2, json_name: "name"
       optional :description, :string, 3, json_name: "description"
       optional :enabled, :bool, 4, json_name: "enabled"
+      optional :namespace_key, :string, 5, json_name: "namespaceKey"
     end
     add_message "flipt.UpdateFlagRequest" do
       optional :key, :string, 1, json_name: "key"
       optional :name, :string, 2, json_name: "name"
       optional :description, :string, 3, json_name: "description"
       optional :enabled, :bool, 4, json_name: "enabled"
+      optional :namespace_key, :string, 5, json_name: "namespaceKey"
     end
     add_message "flipt.DeleteFlagRequest" do
       optional :key, :string, 1, json_name: "key"
+      optional :namespace_key, :string, 2, json_name: "namespaceKey"
     end
     add_message "flipt.Variant" do
       optional :id, :string, 1, json_name: "id"
@@ -83,6 +126,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :created_at, :message, 6, "google.protobuf.Timestamp", json_name: "createdAt"
       optional :updated_at, :message, 7, "google.protobuf.Timestamp", json_name: "updatedAt"
       optional :attachment, :string, 8, json_name: "attachment"
+      optional :namespace_key, :string, 9, json_name: "namespaceKey"
     end
     add_message "flipt.CreateVariantRequest" do
       optional :flag_key, :string, 1, json_name: "flagKey"
@@ -90,6 +134,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :name, :string, 3, json_name: "name"
       optional :description, :string, 4, json_name: "description"
       optional :attachment, :string, 5, json_name: "attachment"
+      optional :namespace_key, :string, 6, json_name: "namespaceKey"
     end
     add_message "flipt.UpdateVariantRequest" do
       optional :id, :string, 1, json_name: "id"
@@ -98,10 +143,12 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :name, :string, 4, json_name: "name"
       optional :description, :string, 5, json_name: "description"
       optional :attachment, :string, 6, json_name: "attachment"
+      optional :namespace_key, :string, 7, json_name: "namespaceKey"
     end
     add_message "flipt.DeleteVariantRequest" do
       optional :id, :string, 1, json_name: "id"
       optional :flag_key, :string, 2, json_name: "flagKey"
+      optional :namespace_key, :string, 3, json_name: "namespaceKey"
     end
     add_message "flipt.Segment" do
       optional :key, :string, 1, json_name: "key"
@@ -111,6 +158,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :updated_at, :message, 5, "google.protobuf.Timestamp", json_name: "updatedAt"
       repeated :constraints, :message, 6, "flipt.Constraint", json_name: "constraints"
       optional :match_type, :enum, 7, "flipt.MatchType", json_name: "matchType"
+      optional :namespace_key, :string, 8, json_name: "namespaceKey"
     end
     add_message "flipt.SegmentList" do
       repeated :segments, :message, 1, "flipt.Segment", json_name: "segments"
@@ -119,26 +167,31 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     end
     add_message "flipt.GetSegmentRequest" do
       optional :key, :string, 1, json_name: "key"
+      optional :namespace_key, :string, 2, json_name: "namespaceKey"
     end
     add_message "flipt.ListSegmentRequest" do
       optional :limit, :int32, 1, json_name: "limit"
       optional :offset, :int32, 2, json_name: "offset"
       optional :page_token, :string, 3, json_name: "pageToken"
+      optional :namespace_key, :string, 4, json_name: "namespaceKey"
     end
     add_message "flipt.CreateSegmentRequest" do
       optional :key, :string, 1, json_name: "key"
       optional :name, :string, 2, json_name: "name"
       optional :description, :string, 3, json_name: "description"
       optional :match_type, :enum, 4, "flipt.MatchType", json_name: "matchType"
+      optional :namespace_key, :string, 5, json_name: "namespaceKey"
     end
     add_message "flipt.UpdateSegmentRequest" do
       optional :key, :string, 1, json_name: "key"
       optional :name, :string, 2, json_name: "name"
       optional :description, :string, 3, json_name: "description"
       optional :match_type, :enum, 4, "flipt.MatchType", json_name: "matchType"
+      optional :namespace_key, :string, 5, json_name: "namespaceKey"
     end
     add_message "flipt.DeleteSegmentRequest" do
       optional :key, :string, 1, json_name: "key"
+      optional :namespace_key, :string, 2, json_name: "namespaceKey"
     end
     add_message "flipt.Constraint" do
       optional :id, :string, 1, json_name: "id"
@@ -149,6 +202,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :value, :string, 6, json_name: "value"
       optional :created_at, :message, 7, "google.protobuf.Timestamp", json_name: "createdAt"
       optional :updated_at, :message, 8, "google.protobuf.Timestamp", json_name: "updatedAt"
+      optional :namespace_key, :string, 9, json_name: "namespaceKey"
     end
     add_message "flipt.CreateConstraintRequest" do
       optional :segment_key, :string, 1, json_name: "segmentKey"
@@ -156,6 +210,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :property, :string, 3, json_name: "property"
       optional :operator, :string, 4, json_name: "operator"
       optional :value, :string, 5, json_name: "value"
+      optional :namespace_key, :string, 6, json_name: "namespaceKey"
     end
     add_message "flipt.UpdateConstraintRequest" do
       optional :id, :string, 1, json_name: "id"
@@ -164,10 +219,12 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :property, :string, 4, json_name: "property"
       optional :operator, :string, 5, json_name: "operator"
       optional :value, :string, 6, json_name: "value"
+      optional :namespace_key, :string, 7, json_name: "namespaceKey"
     end
     add_message "flipt.DeleteConstraintRequest" do
       optional :id, :string, 1, json_name: "id"
       optional :segment_key, :string, 2, json_name: "segmentKey"
+      optional :namespace_key, :string, 3, json_name: "namespaceKey"
     end
     add_message "flipt.Rule" do
       optional :id, :string, 1, json_name: "id"
@@ -177,6 +234,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :rank, :int32, 5, json_name: "rank"
       optional :created_at, :message, 6, "google.protobuf.Timestamp", json_name: "createdAt"
       optional :updated_at, :message, 7, "google.protobuf.Timestamp", json_name: "updatedAt"
+      optional :namespace_key, :string, 8, json_name: "namespaceKey"
     end
     add_message "flipt.RuleList" do
       repeated :rules, :message, 1, "flipt.Rule", json_name: "rules"
@@ -188,28 +246,34 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :offset, :int32, 2, json_name: "offset"
       optional :flag_key, :string, 3, json_name: "flagKey"
       optional :page_token, :string, 4, json_name: "pageToken"
+      optional :namespace_key, :string, 5, json_name: "namespaceKey"
     end
     add_message "flipt.GetRuleRequest" do
       optional :id, :string, 1, json_name: "id"
       optional :flag_key, :string, 2, json_name: "flagKey"
+      optional :namespace_key, :string, 3, json_name: "namespaceKey"
     end
     add_message "flipt.CreateRuleRequest" do
       optional :flag_key, :string, 1, json_name: "flagKey"
       optional :segment_key, :string, 2, json_name: "segmentKey"
       optional :rank, :int32, 3, json_name: "rank"
+      optional :namespace_key, :string, 4, json_name: "namespaceKey"
     end
     add_message "flipt.UpdateRuleRequest" do
       optional :id, :string, 1, json_name: "id"
       optional :flag_key, :string, 2, json_name: "flagKey"
       optional :segment_key, :string, 3, json_name: "segmentKey"
+      optional :namespace_key, :string, 4, json_name: "namespaceKey"
     end
     add_message "flipt.DeleteRuleRequest" do
       optional :id, :string, 1, json_name: "id"
       optional :flag_key, :string, 2, json_name: "flagKey"
+      optional :namespace_key, :string, 3, json_name: "namespaceKey"
     end
     add_message "flipt.OrderRulesRequest" do
       optional :flag_key, :string, 1, json_name: "flagKey"
       repeated :rule_ids, :string, 2, json_name: "ruleIds"
+      optional :namespace_key, :string, 3, json_name: "namespaceKey"
     end
     add_message "flipt.Distribution" do
       optional :id, :string, 1, json_name: "id"
@@ -224,6 +288,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :rule_id, :string, 2, json_name: "ruleId"
       optional :variant_id, :string, 3, json_name: "variantId"
       optional :rollout, :float, 4, json_name: "rollout"
+      optional :namespace_key, :string, 5, json_name: "namespaceKey"
     end
     add_message "flipt.UpdateDistributionRequest" do
       optional :id, :string, 1, json_name: "id"
@@ -231,12 +296,14 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :rule_id, :string, 3, json_name: "ruleId"
       optional :variant_id, :string, 4, json_name: "variantId"
       optional :rollout, :float, 5, json_name: "rollout"
+      optional :namespace_key, :string, 6, json_name: "namespaceKey"
     end
     add_message "flipt.DeleteDistributionRequest" do
       optional :id, :string, 1, json_name: "id"
       optional :flag_key, :string, 2, json_name: "flagKey"
       optional :rule_id, :string, 3, json_name: "ruleId"
       optional :variant_id, :string, 4, json_name: "variantId"
+      optional :namespace_key, :string, 5, json_name: "namespaceKey"
     end
     add_enum "flipt.EvaluationReason" do
       value :UNKNOWN_EVALUATION_REASON, 0
@@ -263,6 +330,13 @@ module Flipt
   BatchEvaluationRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.BatchEvaluationRequest").msgclass
   EvaluationResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.EvaluationResponse").msgclass
   BatchEvaluationResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.BatchEvaluationResponse").msgclass
+  Namespace = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.Namespace").msgclass
+  NamespaceList = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.NamespaceList").msgclass
+  GetNamespaceRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.GetNamespaceRequest").msgclass
+  ListNamespaceRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.ListNamespaceRequest").msgclass
+  CreateNamespaceRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.CreateNamespaceRequest").msgclass
+  UpdateNamespaceRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.UpdateNamespaceRequest").msgclass
+  DeleteNamespaceRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.DeleteNamespaceRequest").msgclass
   Flag = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.Flag").msgclass
   FlagList = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.FlagList").msgclass
   GetFlagRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("flipt.GetFlagRequest").msgclass
