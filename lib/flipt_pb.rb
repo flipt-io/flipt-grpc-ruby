@@ -203,6 +203,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :created_at, :message, 7, "google.protobuf.Timestamp", json_name: "createdAt"
       optional :updated_at, :message, 8, "google.protobuf.Timestamp", json_name: "updatedAt"
       optional :namespace_key, :string, 9, json_name: "namespaceKey"
+      optional :description, :string, 10, json_name: "description"
     end
     add_message "flipt.CreateConstraintRequest" do
       optional :segment_key, :string, 1, json_name: "segmentKey"
@@ -211,6 +212,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :operator, :string, 4, json_name: "operator"
       optional :value, :string, 5, json_name: "value"
       optional :namespace_key, :string, 6, json_name: "namespaceKey"
+      optional :description, :string, 7, json_name: "description"
     end
     add_message "flipt.UpdateConstraintRequest" do
       optional :id, :string, 1, json_name: "id"
@@ -220,6 +222,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :operator, :string, 5, json_name: "operator"
       optional :value, :string, 6, json_name: "value"
       optional :namespace_key, :string, 7, json_name: "namespaceKey"
+      optional :description, :string, 8, json_name: "description"
     end
     add_message "flipt.DeleteConstraintRequest" do
       optional :id, :string, 1, json_name: "id"
@@ -321,6 +324,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       value :STRING_COMPARISON_TYPE, 1
       value :NUMBER_COMPARISON_TYPE, 2
       value :BOOLEAN_COMPARISON_TYPE, 3
+      value :DATETIME_COMPARISON_TYPE, 4
     end
   end
 end
