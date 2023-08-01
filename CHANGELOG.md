@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.0](https://github.com/flipt-io/flipt-grpc-ruby/compare/v1.6.0...v1.7.0) (2023-08-01)
+
+
+### Features
+
+* updates to protobuf definitions for flipt v1.24.0 ([#36](https://github.com/flipt-io/flipt-grpc-ruby/issues/36)) ([7b3491e](https://github.com/flipt-io/flipt-grpc-ruby/commit/7b3491ef677aa42c4c62680ffb0a817bcc9c9027))
+
 ## [1.6.0](https://github.com/flipt-io/flipt-grpc-ruby/compare/v1.5.0...v1.6.0) (2023-05-23)
 
 
