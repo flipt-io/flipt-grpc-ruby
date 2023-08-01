@@ -35,6 +35,12 @@ module Flipt
       rpc :UpdateRule, ::Flipt::UpdateRuleRequest, ::Flipt::Rule
       rpc :OrderRules, ::Flipt::OrderRulesRequest, ::Google::Protobuf::Empty
       rpc :DeleteRule, ::Flipt::DeleteRuleRequest, ::Google::Protobuf::Empty
+      rpc :GetRollout, ::Flipt::GetRolloutRequest, ::Flipt::Rollout
+      rpc :ListRollouts, ::Flipt::ListRolloutRequest, ::Flipt::RolloutList
+      rpc :CreateRollout, ::Flipt::CreateRolloutRequest, ::Flipt::Rollout
+      rpc :UpdateRollout, ::Flipt::UpdateRolloutRequest, ::Flipt::Rollout
+      rpc :DeleteRollout, ::Flipt::DeleteRolloutRequest, ::Google::Protobuf::Empty
+      rpc :OrderRollouts, ::Flipt::OrderRolloutsRequest, ::Google::Protobuf::Empty
       rpc :CreateDistribution, ::Flipt::CreateDistributionRequest, ::Flipt::Distribution
       rpc :UpdateDistribution, ::Flipt::UpdateDistributionRequest, ::Flipt::Distribution
       rpc :DeleteDistribution, ::Flipt::DeleteDistributionRequest, ::Google::Protobuf::Empty
