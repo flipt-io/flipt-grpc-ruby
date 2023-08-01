@@ -1,6 +1,6 @@
 version: v1
 plugins:
-  - remote: buf.build/protocolbuffers/plugins/ruby:v21.10.0-1
+  - plugin: buf.build/grpc/ruby:v1.56.2
     out: ./lib
-  - remote: buf.build/grpc/plugins/ruby:v1.51.1-1
+  - plugin: buf.build/protocolbuffers/ruby
     out: ./lib
