@@ -1,6 +1,6 @@
 # Flipt::Grpc::Ruby
 
-The official GRPC Ruby client for [Flipt](https://github.com/markphelps/flipt).
+The official GRPC Ruby client for [Flipt](https://github.com/flipt-io/flipt).
 
 ## Installation
 
@@ -28,7 +28,7 @@ end
 
 Or install it yourself as:
 
-    $ gem install flipt-grpc --version "1.0.0" --source "https://rubygems.pkg.github.com/flipt-io"
+    gem install flipt-grpc --version "1.0.0" --source "https://rubygems.pkg.github.com/flipt-io"
 
 ## Usage Example
 
