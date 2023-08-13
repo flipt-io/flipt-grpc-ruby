@@ -34,7 +34,7 @@ Or install it yourself as:
 
 1. Run flipt server
 
-   `$ docker run --rm -p 8080:8080 -p 9000:9000 markphelps/flipt:latest`
+   `$ docker run --rm -p 8080:8080 -p 9000:9000 flipt/flipt:latest`
 
 2. Open the UI at localhost:8080 and create some flags
 
