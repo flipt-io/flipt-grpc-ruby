@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.0](https://github.com/flipt-io/flipt-grpc-ruby/compare/v1.8.0...v1.9.0) (2023-09-18)
+
+
+### Features
+
+* updates to protobuf definitions for flipt main ([#48](https://github.com/flipt-io/flipt-grpc-ruby/issues/48)) ([6e686d4](https://github.com/flipt-io/flipt-grpc-ruby/commit/6e686d4fbb9ac8a960d760e605650e042a2defba))
+
 ## [1.8.0](https://github.com/flipt-io/flipt-grpc-ruby/compare/v1.7.0...v1.8.0) (2023-08-16)
 
 
