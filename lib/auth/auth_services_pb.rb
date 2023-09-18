@@ -81,5 +81,20 @@ module Flipt
 
       Stub = Service.rpc_stub_class
     end
+    module AuthenticationMethodGithubService
+      class Service
+
+        include ::GRPC::GenericService
+
+        self.marshal_class_method = :encode
+        self.unmarshal_class_method = :decode
+        self.service_name = 'flipt.auth.AuthenticationMethodGithubService'
+
+        rpc :AuthorizeURL, ::Flipt::Auth::AuthorizeURLRequest, ::Flipt::Auth::AuthorizeURLResponse
+        rpc :Callback, ::Flipt::Auth::CallbackRequest, ::Flipt::Auth::CallbackResponse
+      end
+
+      Stub = Service.rpc_stub_class
+    end
   end
 end
