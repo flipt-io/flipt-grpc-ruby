@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.13.0](https://github.com/flipt-io/flipt-grpc-ruby/compare/v1.12.0...v1.13.0) (2025-04-04)
+
+
+### Miscellaneous Chores
+
+* release 1.13.0 ([06c36ec](https://github.com/flipt-io/flipt-grpc-ruby/commit/06c36ec0b1519975c0eee418c8f587a9347c2acd))
+
 ## [1.12.0](https://github.com/flipt-io/flipt-grpc-ruby/compare/v1.11.0...v1.12.0) (2024-01-15)
 
 ### Features
