@@ -2,6 +2,10 @@
 
 The official GRPC Ruby client for [Flipt](https://github.com/flipt-io/flipt).
 
+## Prerequisites
+
+- Ruby 3.2.0 or higher
+
 ## Installation
 
 1. Configure RubyGems to [authenticate with GitHub Package Registry](https://help.github.com/en/github/managing-packages-with-github-package-registry/configuring-rubygems-for-use-with-github-package-registry#authenticating-to-github-package-registry)
