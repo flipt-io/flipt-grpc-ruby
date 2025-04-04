@@ -6,7 +6,7 @@ require 'version'
 Gem::Specification.new do |spec|
   spec.name          = "flipt-grpc"
   spec.version       = Flipt::VERSION
-  spec.authors       = ["Mark Phelps"]
+  spec.authors       = ["Flipt Devs"]
   spec.email         = ["dev@flipt.io"]
 
   spec.summary       = %q{Flipt GRPC client for Ruby}
@@ -33,6 +33,7 @@ Gem::Specification.new do |spec|
   end
 
   spec.require_paths = ["lib"]
+  spec.required_ruby_version = '>= 3.2.0'
 
   spec.add_dependency "grpc", ">= 1.53", "< 1.72"
 
