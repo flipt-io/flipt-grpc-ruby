@@ -1,11 +1,5 @@
 # Changelog
 
-## [1.13.0](https://github.com/flipt-io/flipt-grpc-ruby/compare/v1.12.0...v1.13.0) (2025-04-04)
-
-### Changes
-
-- Update to Ruby 3.2.0+
-
 ## [1.12.0](https://github.com/flipt-io/flipt-grpc-ruby/compare/v1.11.0...v1.12.0) (2024-01-15)
 
 ### Features
