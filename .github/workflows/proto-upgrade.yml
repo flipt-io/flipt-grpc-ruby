@@ -23,7 +23,9 @@ jobs:
 
       - name: Generate
         run: |
-          buf generate buf.build/flipt-io/flipt
+          buf generate buf.build/flipt-io/flipt --include-imports
+          # google/api types come from the googleapis-common-protos-types gem
+          rm -rf lib/google
 
       - name: Prepare Branch
         env:

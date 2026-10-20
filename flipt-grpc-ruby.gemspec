@@ -36,6 +36,8 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = '>= 3.2.0'
 
   spec.add_dependency "grpc", ">= 1.53", "< 1.85"
+  spec.add_dependency "google-protobuf", ">= 3.25", "< 5"
+  spec.add_dependency "googleapis-common-protos-types", "~> 1.0"
 
   spec.add_development_dependency "bundler", "~> 2"
   spec.add_development_dependency "rake", "~> 13.0"
