@@ -23,7 +23,6 @@ module Flipt
       Stub = Service.rpc_stub_class
     end
     module DataService
-      # flipt:sdk:ignore
       class Service
 
         include ::GRPC::GenericService
